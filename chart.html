@@ -24,26 +24,44 @@ h2{
 	text-align:center;
 	margin-top:30px;
 	font-size:26px;
+  color:#ff8000;
 
 }
 
 h3 {
 	text-align:center;
 	font-size:21px;
+  color:#ff8000;
 }
 
 p.reference {
 	text-align:center;
 	font-size:16px;
+  color:#ff8000;
 }
+
+span.important {
+ color:black;
+ font-size: 26px;
+    -webkit-transition: color 2s,font-size 2s;
+       -moz-transition: color 2s,font-size 2s;
+         -o-transition: color 2s,font-size 2s;
+            transition: color 2s,font-size 2s;
+}
+
+span.important:hover{
+  font-size:32px;
+  color:red;
+}
+
 
 
 </style>
 
 <body>
   <script src="http://d3js.org/d3.v3.min.js"></script>
-  <h2>Private Business Profits <span style="color:red">$43.4B</span> Each Year from Slave Labours</h2>
-  <h3>Most of the Profits Went to Companies in the <span style="color:red">Developed Countries</span></h3>
+  <h2>Private Business Profits <span class="important">$43.4B</span> Each Year from Slave Labours</h2>
+  <h3>Most of the Profits Went to Companies in the <span class="important">Developed Countries</span></h3>
   <div id="chart">
   <script>
     var width = 1020,
