@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Profit From Slave Labour</title>
+
+<style>
+  body {
+    font: 10px sans-serif;
+  }
+  
+  .arc path {
+    stroke: #fff;
+  }
+
+#chart{
+	margin-top:30px;
+}
+
+svg{
+	  padding-top:50px;
+	  margin:0 auto;
+	  display:block;
+  }
+h2{
+	text-align:center;
+	margin-top:30px;
+	font-size:26px;
+
+}
+
+h3 {
+	text-align:center;
+	font-size:21px;
+}
+
+p.reference {
+	text-align:center;
+	font-size:16px;
+}
+
+
+</style>
+
+<body>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <h2>Private Businesses Profits <span style="color:red">$43.4B</span> Each Year from Slave Labours</h2>
+  <h3>Most of the Profits Went to Companies in the <span style="color:red">Developed Countries</span></h3>
+  <div id="chart">
+  <script>
+    var width = 1020,
+      height = 500,
+      radius = Math.min(width, height) / 2;
+
+    var color = d3.scale.category10();
+
+    var arc = d3.svg.arc()
+      .outerRadius(radius - 10)
+      .innerRadius(0);
+
+    var pie = d3.layout.pie()
+      .sort(null)
+      .value(function(d) {
+        return d.value;
+      });
+
+    var svg = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var data = [{
+      value: 13.8,
+    }, {
+      value: 1.0,
+    }, {
+      value: 3.9,
+    }, {
+      value: 0.6,
+    }, {
+      value: 3.6,
+    }, {
+      value: 20.5,
+    }, 
+	]
+    
+    var names = ["Asia-Pacific: $13.8B","Latin America and the Caribbean: $1.0B","Africa: $3.9B","Middle East: $0.6B","Central and SouthEastern Europe and CIS: $3.6B","Developed Economies and EU: $20.5B" ];
+
+    var arcs = svg.selectAll(".arc")
+      .data(pie(data))
+      .enter().append("g")
+      .attr("class", "arc");
+
+    arcs.append("path")
+      .attr("d", arc)
+      .style("fill", function(d,i) {
+        return color(i);
+      })
+      .on("mouseover", function(d, i) {
+          console.log(d);
+          svg.append("text")
+            .attr("x", "0.5em")
+			.attr("y", "-13em")
+            .style("text-anchor", "middle")
+            .style("font-size", 21)
+            .attr("class","label")
+            .style("fill", function(d,i){return "black";})
+            .text(names[i]);
+          
+      })
+      .on("mouseout", function(d) {
+        svg.select(".label").remove();
+      });
+    
+  </script>
+</div>
+
+<p class="reference">Data from the International Labour Office's report <a href="http://www.ilo.org/wcmsp5/groups/public/---ed_norm/---declaration/documents/publication/wcms_243391.pdf" target="_blank"><span style="font-style:italic">Profits and Poverty: The economics of forced labour</span></a></p>
+
+</body>
+
+</html>
